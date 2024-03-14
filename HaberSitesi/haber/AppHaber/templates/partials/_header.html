@@ -1,0 +1,228 @@
+{% load static %}
+{% load custom_filters %}
+    <!-- Topbar Start -->
+    <div class="container-fluid d-none d-lg-block">
+        <div class="row align-items-center bg-dark px-lg-5">
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-sm bg-dark p-0">
+                    <ul class="navbar-nav ml-n2">
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small bg-light" href="#">Dolar : {{ kur.USD.satis }}</a>
+                        </li>
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small bg-light" href="#">Euro : {{ kur.EUR.satis }}</a>
+                        </li>
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small bg-light" href="#">Sterlin : {{ kur.GBP.satis }}</a>
+                        </li>
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small bg-light" href="#">Gram : {{ kur.GA.satis }}</a>
+                        </li>
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small bg-light" href="#">Çeyrek : {{ kur.C.satis }}</a>
+                        </li>
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small bg-light" href="#">BTC : {{ kur.BTC.satis }}</a>
+                        </li>
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small bg-light" href="#">ETH : {{ kur.ETH.satis }}</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3 text-right d-none d-md-block">
+                <nav class="navbar navbar-expand-sm bg-dark p-0">
+                    <ul class="navbar-nav me-auto d-flex justify-content-center align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-body"><img src="https://openweathermap.org/img/wn/{{ hava_durumu.0.weather.0.icon }}@2x.png" class="w-50"></a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ hava_durumu.0.name|upper }}
+                                </button>
+                                <form method="post">
+                                    {% csrf_token %}
+                                <ul class="dropdown-menu" style="height: 150px; overflow-y: auto; top: 75%;">
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Adana">Adana</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Adıyaman">Adıyaman</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Afyonkarahisar">Afyonkarahisar</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Ağrı">Ağrı</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Amasya">Amasya</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Ankara">Ankara</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Antalya">Antalya</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Artvin">Artvin</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Aydın">Aydın</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Balıkesir">Balıkesir</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Bilecik">Bilecik</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Bingöl">Bingöl</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Bitlis">Bitlis</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Bolu">Bolu</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Burdur">Burdur</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Bursa">Bursa</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Çanakkale">Çanakkale</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Çankırı">Çankırı</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Çorum">Çorum</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Denizli">Denizli</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Diyarbakır">Diyarbakır</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Edirne">Edirne</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Elazığ">Elazığ</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Erzincan">Erzincan</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Erzurum">Erzurum</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Eskişehir">Eskişehir</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Gaziantep">Gaziantep</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Giresun">Giresun</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Gümüşhane">Gümüşhane</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Hakkari">Hakkari</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Hatay">Hatay</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Isparta">Isparta</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Mersin">Mersin</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="İstanbul">İstanbul</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="İzmir">İzmir</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Kars">Kars</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Kastamonu">Kastamonu</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Kayseri">Kayseri</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Kırklareli">Kırklareli</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Kırşehir">Kırşehir</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Kocaeli">Kocaeli</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Konya">Konya</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Kütahya">Kütahya</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Malatya">Malatya</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Manisa">Manisa</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Kahramanmaraş">Kahramanmaraş</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Mardin">Mardin</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Muğla">Muğla</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Muş">Muş</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Nevşehir">Nevşehir</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Niğde">Niğde</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Ordu">Ordu</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Rize">Rize</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Sakarya">Sakarya</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Samsun">Samsun</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Siirt">Siirt</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Sinop">Sinop</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Sivas">Sivas</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Tekirdağ">Tekirdağ</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Tokat">Tokat</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Trabzon">Trabzon</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Tunceli">Tunceli</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Şanlıurfa">Şanlıurfa</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Uşak">Uşak</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Van">Van</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Yozgat">Yozgat</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Zonguldak">Zonguldak</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Aksaray">Aksaray</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Bayburt">Bayburt</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Karaman">Karaman</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Kırıkkale">Kırıkkale</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Batman">Batman</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Şırnak">Şırnak</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Bartın">Bartın</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Ardahan">Ardahan</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Iğdır">Iğdır</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Yalova">Yalova</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Karabük">Karabük</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Kilis">Kilis</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Osmaniye">Osmaniye</button></li>
+                                    <li><button type="submit" class="dropdown-item" name="sehir" value="Düzce">Düzce</button></li>
+                                </ul>
+                                </form>
+                              </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body">{{ hava_durumu.1 }}°C</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body">{{ hava_durumu.0.weather.0.description|title }}</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row align-items-center bg-white py-3 px-lg-5">
+            <div class="col-lg-4">
+                <a href="index.html" class="navbar-brand p-0 d-none d-lg-block">
+                    <h1 class="m-0 display-4 text-uppercase text-primary">Biz<span class="text-secondary font-weight-normal">News</span></h1>
+                </a>
+            </div>
+            <div class="col-lg-8 text-center text-lg-right">
+                <a href="https://htmlcodex.com"><img class="img-fluid" src="img/ads-728x90.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand d-block d-lg-none">
+                <h1 class="m-0 display-4 text-uppercase text-primary">Biz<span class="text-white font-weight-normal">News</span></h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav m-auto py-0">
+                    <a href="{% url 'index' %}" class="nav-item nav-link 
+                        
+                        {% if request.path == '/' %}
+                            active
+                        {% endif %}
+                            
+                    ">ANASAYFA</a>
+                        {% for haber_sites in haber_sites %}
+                            <a href="{% url 'haber_site' haber_sites|create_slug:'title' %}" class="nav-item nav-link 
+                            
+                            {% if request.path|get_path_part:2 == haber_sites|create_slug:'title' %} active {% endif %}
+                                
+                            ">{{ haber_sites.title }}</a>
+                        {% endfor %}
+                    <!-- <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">DAHA FAZLA</a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            <a href="#" class="dropdown-item">Menu item 1</a>
+                            <a href="#" class="dropdown-item">Menu item 2</a>
+                            <a href="#" class="dropdown-item">Menu item 3</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a> -->
+                </div>
+                <!-- <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+                    <input type="text" class="form-control border-0" placeholder="Keyword">
+                    <div class="input-group-append">
+                        <button class="input-group-text bg-primary text-dark border-0 px-3">
+                            <i class="fa fa-search"></i></button>
+                    </div>
+                </div> -->
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+    <!-- Navbar Start -->
+    
+    {% if request.path != "/" %}
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0">
+            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav m-auto py-0">
+                            {% for category in new.categorys.all %}
+                                <a href="{% url 'subcategory' new|create_slug:'title' category|create_slug:'title' %}" class="nav-item nav-link 
+                                {% if request.path|get_path_part:4 == category|create_slug:'title' %} active {% endif %}
+                                ">{{ category.title }}</a>
+                            {% endfor %}
+                </div>
+                <!-- <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+                    <input type="text" class="form-control border-0" placeholder="Keyword">
+                    <div class="input-group-append">
+                        <button class="input-group-text bg-primary text-dark border-0 px-3">
+                            <i class="fa fa-search"></i></button>
+                    </div>
+                </div> -->
+            </div>
+        </nav>
+    </div>
+    {% endif %}
+        
+
+    <!-- Navbar End -->

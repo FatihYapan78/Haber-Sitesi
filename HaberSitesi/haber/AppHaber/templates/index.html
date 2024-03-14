@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+
+{% block content %}
+
+
+    <!-- Main News Slider Start -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-7 px-0">
+                
+                <div class="owl-carousel main-carousel position-relative">
+                {% for haber in haberler|slice:":3" %}
+                    <div class="position-relative overflow-hidden" style="height: 500px;">
+                        <img class="img-fluid h-100" src="{{ haber.img_url }}" style="object-fit: cover;">
+                        <div class="overlay">
+                            <div class="mb-2">
+                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                    href="">{{ haber.kaynak }}</a>
+                                <a class="text-white" href="">{{ haber.date }}</a>
+                            </div>
+                            <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="{{ haber.link }}">{{ haber.baslik }}</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                    
+            </div>
+            <div class="col-lg-5 px-0">
+                <div class="row mx-0">
+                    
+                    {% for haber in haberler|slice:"3:7" %}
+                    <div class="col-md-6 px-0">
+                        <div class="position-relative overflow-hidden" style="height: 250px;">
+                            <img class="img-fluid w-100 h-100" src="{{ haber.img_url }}" style="object-fit: cover;">
+                            <div class="overlay">
+                                <div class="mb-2">
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                        href="">{{ haber.kaynak }}</a>
+                                    <a class="text-white" href=""><small>{{ haber.date }}</small></a>
+                                </div>
+                                <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{{ haber.link }}">{{ haber.baslik }}</a>
+                            </div>
+                        </div>
+                    </div>  
+                    {% endfor %}
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main News Slider End -->
+
+
+    <!-- Breaking News Start -->
+    <div class="container-fluid bg-dark py-3 mb-3">
+        <div class="container">
+            <div class="row align-items-center bg-dark">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between">
+                        <div class="bg-primary text-dark text-center font-weight-medium py-2" style="width: 170px;">SON DAKİKA</div>
+                        <div class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center ml-3"
+                            style="width: calc(100% - 170px); padding-right: 90px;">
+                            
+                            {% for haber in haberler|slice:":7" %}
+                            <div class="text-truncate"><a class="text-white text-uppercase font-weight-semi-bold" href="{{ haber.link }}">{{ haber.baslik }}</a></div>
+                                
+                            {% endfor %}
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breaking News End -->
+
+
+    <!-- Featured News Slider Start -->
+    <div class="container-fluid pt-5 mb-3">
+        <div class="container">
+            <div class="section-title">
+                <h4 class="m-0 text-uppercase font-weight-bold">ÖNE ÇIKAN HABERLER</h4>
+            </div>
+            <div class="owl-carousel news-carousel carousel-item-4 position-relative">
+                
+                {% for haber in haberler|slice:"6:15" %}
+                <div class="position-relative overflow-hidden" style="height: 300px;">
+                    <img class="img-fluid h-100" src="{{ haber.img_url }}" style="object-fit: cover;">
+                    <div class="overlay">
+                        <div class="mb-2">
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                href="">{{ haber.kaynak }}</a>
+                            <a class="text-white" href=""><small>{{ haber.date }}</small></a>
+                        </div>
+                        <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{{ haber.link }}">{{ haber.baslik }}</a>
+                    </div>
+                </div>
+                    
+                {% endfor %}
+                    
+            </div>
+        </div>
+    </div>
+    <!-- Featured News Slider End -->
+
+
+    <!-- News With Sidebar Start -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title">
+                                <h4 class="m-0 text-uppercase font-weight-bold">SON HABERLER</h4>
+                            </div>
+                        </div>
+                        
+                        {% for haber in haberler|slice:"14:" %}   
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{{ haber.img_url }}" style="object-fit: cover;">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                            href="">{{ haber.kaynak }}</a>
+                                        <a class="text-body" href=""><small>{{ haber.date }}</small></a>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ haber.link }}">{{ haber.baslik }}</a>
+                                    <p class="m-0">{{ haber.description|truncatechars:150 }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                                                <!-- Paginatör -->
+              <div class="pagination d-block m-auto">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination m-auto">
+                    {% if haberler.has_previous %} 
+                    <li class="page-item">
+                      <a class="page-link text-dark p-3" href="?page=1" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link text-dark p-3" href="?page={{ haberler.previous_page_number }}">Geri</a></li>
+                     <li class="page-item"><a class="page-link text-dark p-3" href="?page={{ haberler.number|add:'-1' }}">{{ haberler.number|add:'-1' }}</a></li>
+                    {% endif %}
+                    <li class="page-item"><a class="page-link text-dark p-3" href="?page={{ haberler.number }}">{{ haberler.number }}</a></li> 
+                    {% if haberler.has_next %}
+                    <li class="page-item"><a class="page-link text-dark p-3" href="?page={{ haberler.number|add:'2' }}">{{ haberler.number|add:'1' }}</a></li>
+                    <li class="page-item"><a class="page-link text-dark p-3" href="?page={{ haberler.next_page_number }}">İleri</a></li>
+                    <li class="page-item">
+                      <a class="page-link text-dark p-3" href="?page={{ haberler.paginator.num_pages }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </nav>
+          </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <!-- Social Follow Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">BİZİ TAKİP ET</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-3">
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #39569E;">
+                                <i class="fab fa-facebook-f text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Fans</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #52AAF4;">
+                                <i class="fab fa-twitter text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Followers</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #0185AE;">
+                                <i class="fab fa-linkedin-in text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Connects</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #C8359D;">
+                                <i class="fab fa-instagram text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Followers</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #DC472E;">
+                                <i class="fab fa-youtube text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Subscribers</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none" style="background: #055570;">
+                                <i class="fab fa-vimeo-v text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Followers</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Social Follow End -->
+
+                    <!-- Ads Start -->
+                    <div class="mb-3">
+                        <div class="bg-white text-center border border-top-0 p-3">
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9009945326928033" crossorigin="anonymous"></script>
+                            <!-- Görüntü -->
+                            <ins class="adsbygoogle"
+                                style="display:block"
+                                data-ad-client="ca-pub-9009945326928033"
+                                data-ad-slot="9350983003"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="bg-white text-center border border-top-0 p-3">
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9009945326928033" crossorigin="anonymous"></script>
+                            <!-- Görüntü -->
+                            <ins class="adsbygoogle"
+                                style="display:block"
+                                data-ad-client="ca-pub-9009945326928033"
+                                data-ad-slot="9350983003"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                    </div>
+                    <!-- Ads End -->
+
+                    <!-- Popular News Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">TREND HABERLER</h4>
+                        </div>
+                        {% for haber in haberler|slice:":5" %}
+                        <div class="bg-white border border-top-0 p-3">
+                            <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                                <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">TREND</a>
+                                        <a class="text-body" href=""><small>{{ haber.date }}</small></a>
+                                    </div>
+                                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">{{ haber.baslik }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Popular News End -->
+
+                    <!-- Newsletter Start -->
+                    <div class="mb-3">
+                        <div class="bg-white text-center border border-top-0 p-3">
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9009945326928033" crossorigin="anonymous"></script>
+                            <!-- Görüntü -->
+                            <ins class="adsbygoogle"
+                                style="display:block"
+                                data-ad-client="ca-pub-9009945326928033"
+                                data-ad-slot="9350983003"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                    </div>
+                    <!-- Newsletter End -->
+
+                    <!-- Tags Start -->
+                    <div class="mb-3">
+                        <div class="bg-white text-center border border-top-0 p-3">
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9009945326928033" crossorigin="anonymous"></script>
+                            <!-- Görüntü -->
+                            <ins class="adsbygoogle"
+                                style="display:block"
+                                data-ad-client="ca-pub-9009945326928033"
+                                data-ad-slot="9350983003"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                    </div>
+                    <!-- Tags End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- News With Sidebar End -->
+{% endblock content %}
+
+
+
+
